@@ -34,12 +34,10 @@ class MainActivity : AppCompatActivity(), StoreContract.View {
     private val presenter: StoreContract.Presenter by lazy {
         StorePresenter.create(StoreRepository.create())
     }
-    private val adapter =
-        PersonAdapter(
-            presenter::onSelect,
-            presenter::onBottomSheetDialog,
-
-            )
+    private val adapter = PersonAdapter(
+        presenter::onSelect,
+        presenter::onBottomSheetDialog,
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +47,7 @@ class MainActivity : AppCompatActivity(), StoreContract.View {
         personAdd = findViewById(R.id.onAdd)
         personRecyclerView.adapter = adapter
         progressBar = findViewById(R.id.progress)
+
         presenter.onAttach(this)
         presenter.load()
 
@@ -125,8 +124,7 @@ class MainActivity : AppCompatActivity(), StoreContract.View {
         if (requestCode == KEY_REQUEST_ADD && resultCode == RESULT_OK && data != null) {
             val addPerson = data.getParcelableExtra<Person>(KEY_ADD) ?: return
             presenter.showAddedPerson(addPerson)
-        }
-        if (requestCode == KEY_REQUEST_EDIT && resultCode == RESULT_OK && data != null) {
+        } else if (requestCode == KEY_REQUEST_EDIT && resultCode == RESULT_OK && data != null) {
             val editPerson = data.getParcelableExtra<Person>(KEY_EDIT) ?: return
             presenter.showEditedPerson(editPerson)
 

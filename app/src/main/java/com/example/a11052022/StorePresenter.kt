@@ -6,7 +6,7 @@ import com.example.a11052022.StoreContract.*
 import com.example.a11052022.StoreContract.Presenter.*
 import com.example.a11052022.StoreContract.Presenter.State.*
 
-class StorePresenter(
+class StorePresenter private constructor(
     private val repository: Repository
 ) : Presenter {
     private var view: View? = null

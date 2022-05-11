@@ -1,6 +1,6 @@
 package com.example.a11052022
 
-class StoreRepository : StoreContract.Repository {
+class StoreRepository private constructor() : StoreContract.Repository {
     private val persons = mutableListOf(
         Person(IdGenerator.generatorId(), "Mary", "28"),
         Person(IdGenerator.generatorId(), "Olga", "28"),
